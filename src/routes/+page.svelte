@@ -10,7 +10,7 @@
 		[2, 4, 6]
 	];
 
-	const gameboard = [
+	let gameboard = [
 		[0, 0, 0],
 		[0, 0, 0],
 		[0, 0, 0]
@@ -18,6 +18,16 @@
 
 	let currentPlayer = 1;
 	let winner = 0;
+
+	const resetGame = () => {
+		gameboard = [
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 0, 0]
+		];
+		currentPlayer = 1;
+		winner = 0;
+	};
 
 	const place = (x: number, y: number) => {
 		if (winner !== 0) return;
@@ -76,3 +86,12 @@
 		</div>
 	{/each}
 </div>
+
+{#if winner !== 0}
+	<button
+		class="px-4 py-2 rounded-lg border border-black"
+		on:click|preventDefault={() => resetGame()}
+	>
+		reset
+	</button>
+{/if}
