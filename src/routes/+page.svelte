@@ -37,6 +37,8 @@
 			) {
 				winner = gameboard[Math.floor(a / 3)][a % 3];
 				return;
+			} else if (!gameboard.flat().includes(0)) {
+				winner = 3;
 			}
 		}
 	};
@@ -45,7 +47,11 @@
 <h1 class="text-4xl">embeds tic tac toe</h1>
 <h2>
 	{#if winner !== 0}
-		{winner === 1 ? '❌' : '⭕'} wins!
+		{#if winner === 3}
+			it's a tie!
+		{:else}
+			{winner === 1 ? '❌' : '⭕'} wins!
+		{/if}
 	{:else}
 		current player: {currentPlayer === 1 ? '❌' : '⭕'}
 	{/if}
